@@ -1,28 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { DragDropContext } from "react-beautiful-dnd";
+import { reorderColors } from "./reorder";
+import { ColorMap } from "./types";
+import { AuthorList } from "./AuthorList";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+const App = () => {
+  const [colorMap, setColors] = React.useState<ColorMap>({
+    a: ["blue", "red", "yellow"],
+    b: ["pink"],
+    c: ["green", "tan"]
+  });
+
+  return (
+    <DragDropContext
+      onDragEnd={({ destination, source }) => {
+        // // dropped outside the list
+        if (!destination) {
+          return;
+        }
+
+        setColors(reorderColors(colorMap, source, destination));
+      }}
+    >
+      <div>
+        {Object.entries(colorMap).map(([k, v]) => (
+          <AuthorList
+            internalScroll
+            key={k}
+            listId={k}
+            listType="CARD"
+            colors={v}
+          />
+        ))}
       </div>
-    );
-  }
-}
+    </DragDropContext>
+  );
+};
 
 export default App;
