@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { generate } from "shortid";
+import images from "./images.json";
 import { reorderRows } from "./reorder";
 import { ColorMap } from "./types";
 import { AuthorList } from "./AuthorList";
@@ -14,10 +15,7 @@ const App = () => {
     {
       id: unrankedId,
       label: "unranked",
-      urls: [
-        "https://www.ssbwiki.com/images/thumb/b/b3/Olimar_SSBU.png/500px-Olimar_SSBU.png",
-        "https://www.ssbwiki.com/images/thumb/b/b0/Olimar-Alt4_SSBU.png/500px-Olimar-Alt4_SSBU.png"
-      ]
+      urls: images
     }
   ]);
 
