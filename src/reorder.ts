@@ -1,5 +1,5 @@
 import { DraggableLocation } from "react-beautiful-dnd";
-import { ColorMap } from "./types";
+import { ColorMap, Row } from "./types";
 
 // a little function to help us with reordering the result
 export const reorder = (
@@ -14,34 +14,35 @@ export const reorder = (
   return result;
 };
 
-export const reorderColors = (
-  colors: ColorMap,
+export const reorderRows = (
+  rows: Row[],
   source: DraggableLocation,
   destination: DraggableLocation
 ) => {
-  const current = [...colors[source.droppableId]];
-  const next = [...colors[destination.droppableId]];
-  const target = current[source.index];
+  return rows;
+  // const current = [...colors[source.droppableId]];
+  // const next = [...colors[destination.droppableId]];
+  // const target = current[source.index];
 
-  // moving to same list
-  if (source.droppableId === destination.droppableId) {
-    const reordered = reorder(current, source.index, destination.index);
-    return {
-      ...colors,
-      [source.droppableId]: reordered
-    };
-  }
+  // // moving to same list
+  // if (source.droppableId === destination.droppableId) {
+  //   const reordered = reorder(current, source.index, destination.index);
+  //   return {
+  //     ...colors,
+  //     [source.droppableId]: reordered
+  //   };
+  // }
 
-  // moving to different list
+  // // moving to different list
 
-  // remove from original
-  current.splice(source.index, 1);
-  // insert into next
-  next.splice(destination.index, 0, target);
+  // // remove from original
+  // current.splice(source.index, 1);
+  // // insert into next
+  // next.splice(destination.index, 0, target);
 
-  return {
-    ...colors,
-    [source.droppableId]: current,
-    [destination.droppableId]: next
-  };
+  // return {
+  //   ...colors,
+  //   [source.droppableId]: current,
+  //   [destination.droppableId]: next
+  // };
 };

@@ -11,6 +11,7 @@
     "react-beautiful-dnd": "^11.0.0",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
+    "shortid": "^2.2.14",
     "typescript": "3.4.4"
   },
   "scripts": {
@@ -29,6 +30,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/react-beautiful-dnd": "^11.0.1"
+    "@types/react-beautiful-dnd": "^11.0.1",
+    "@types/shortid": "^0.0.29"
   }
 }
