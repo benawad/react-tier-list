@@ -3,7 +3,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { generate } from "shortid";
 import images from "./images.json";
 import { reorderRows, reorder } from "./reorder";
-import { ColorMap } from "./types";
 import { AuthorList } from "./AuthorList";
 
 const aId = generate();
@@ -18,6 +17,17 @@ const App = () => {
       urls: images
     }
   ]);
+
+  React.useEffect(() => {
+    const data = localStorage.getItem("my-tier-list");
+    if (data) {
+      setRows(JSON.parse(data));
+    }
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem("my-tier-list", JSON.stringify(rows));
+  });
 
   return (
     <DragDropContext
